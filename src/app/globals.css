@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 20% 98%;
+    --foreground: 224 71.4% 4.1%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 224 71.4% 4.1%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71.4% 4.1%;
+
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 220 14.3% 95.9%;
+    --secondary-foreground: 220.9 39.3% 11%;
+
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.9% 46.1%;
+
+    --accent: 220 14.3% 95.9%;
+    --accent-foreground: 220.9 39.3% 11%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 221.2 83.2% 53.3%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 224 71% 4%;
+    --foreground: 210 40% 98%;
+
+    --card: 224 71% 6%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 224 71% 6%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 12%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 12%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 14%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 50.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 14%;
+    --input: 217.2 32.6% 14%;
+    --ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* Flash price animations for Binance live feed */
+.flash-up {
+  animation: flash-green-anim 1.2s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.flash-down {
+  animation: flash-red-anim 1.2s cubic-bezier(0, 0, 0.2, 1);
+}
+
+@keyframes flash-green-anim {
+  0% {
+    background-color: rgba(16, 185, 129, 0.25);
+    color: #10b981;
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+@keyframes flash-red-anim {
+  0% {
+    background-color: rgba(239, 68, 68, 0.25);
+    color: #ef4444;
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+/* Custom modern scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.2);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.4);
+}

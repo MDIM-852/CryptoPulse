@@ -1,0 +1,156 @@
+import { UserProfile, Transaction, PriceAlert, WatchlistItem, ActivityLog, OnlineUserPresence } from '@/types';
+
+// Mock seed state for instant out-of-the-box local testing & fallback
+export const DEMO_ADMIN_USER: UserProfile = {
+  id: 'usr-admin-001',
+  email: 'admin@cryptopulse.io',
+  full_name: 'Alex Vance (Admin)',
+  avatar_url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+  role: 'admin',
+  is_disabled: false,
+  created_at: new Date(Date.now() - 30 * 86400000).toISOString(),
+  updated_at: new Date().toISOString(),
+};
+
+export const DEMO_REGULAR_USER: UserProfile = {
+  id: 'usr-regular-002',
+  email: 'investor@cryptopulse.io',
+  full_name: 'Sarah Connor',
+  avatar_url: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80',
+  role: 'user',
+  is_disabled: false,
+  created_at: new Date(Date.now() - 15 * 86400000).toISOString(),
+  updated_at: new Date().toISOString(),
+};
+
+export const INITIAL_TRANSACTIONS: Transaction[] = [
+  {
+    id: 'tx-001',
+    user_id: DEMO_ADMIN_USER.id,
+    coin_id: 'bitcoin',
+    coin_symbol: 'BTC',
+    coin_name: 'Bitcoin',
+    type: 'BUY',
+    amount: 0.75,
+    price_per_unit: 58400,
+    transaction_date: new Date(Date.now() - 45 * 86400000).toISOString(),
+    notes: 'DCA Purchase on dip',
+    created_at: new Date(Date.now() - 45 * 86400000).toISOString(),
+  },
+  {
+    id: 'tx-002',
+    user_id: DEMO_ADMIN_USER.id,
+    coin_id: 'ethereum',
+    coin_symbol: 'ETH',
+    coin_name: 'Ethereum',
+    type: 'BUY',
+    amount: 5.2,
+    price_per_unit: 2420,
+    transaction_date: new Date(Date.now() - 30 * 86400000).toISOString(),
+    notes: 'Staking allocation',
+    created_at: new Date(Date.now() - 30 * 86400000).toISOString(),
+  },
+  {
+    id: 'tx-003',
+    user_id: DEMO_ADMIN_USER.id,
+    coin_id: 'solana',
+    coin_symbol: 'SOL',
+    coin_name: 'Solana',
+    type: 'BUY',
+    amount: 35,
+    price_per_unit: 135,
+    transaction_date: new Date(Date.now() - 20 * 86400000).toISOString(),
+    notes: 'DeFi yield reserve',
+    created_at: new Date(Date.now() - 20 * 86400000).toISOString(),
+  },
+  {
+    id: 'tx-004',
+    user_id: DEMO_ADMIN_USER.id,
+    coin_id: 'solana',
+    coin_symbol: 'SOL',
+    coin_name: 'Solana',
+    type: 'SELL',
+    amount: 10,
+    price_per_unit: 155,
+    transaction_date: new Date(Date.now() - 5 * 86400000).toISOString(),
+    notes: 'Take profit 25%',
+    created_at: new Date(Date.now() - 5 * 86400000).toISOString(),
+  },
+];
+
+export const INITIAL_WATCHLIST: WatchlistItem[] = [
+  { id: 'wl-1', user_id: DEMO_ADMIN_USER.id, coin_id: 'bitcoin', coin_symbol: 'BTC', coin_name: 'Bitcoin', created_at: new Date().toISOString() },
+  { id: 'wl-2', user_id: DEMO_ADMIN_USER.id, coin_id: 'ethereum', coin_symbol: 'ETH', coin_name: 'Ethereum', created_at: new Date().toISOString() },
+  { id: 'wl-3', user_id: DEMO_ADMIN_USER.id, coin_id: 'solana', coin_symbol: 'SOL', coin_name: 'Solana', created_at: new Date().toISOString() },
+  { id: 'wl-4', user_id: DEMO_ADMIN_USER.id, coin_id: 'binancecoin', coin_symbol: 'BNB', coin_name: 'BNB', created_at: new Date().toISOString() },
+  { id: 'wl-5', user_id: DEMO_ADMIN_USER.id, coin_id: 'cardano', coin_symbol: 'ADA', coin_name: 'Cardano', created_at: new Date().toISOString() },
+];
+
+export const INITIAL_PRICE_ALERTS: PriceAlert[] = [
+  {
+    id: 'alt-1',
+    user_id: DEMO_ADMIN_USER.id,
+    coin_id: 'bitcoin',
+    coin_symbol: 'BTC',
+    coin_name: 'Bitcoin',
+    target_price: 70000,
+    condition: 'ABOVE',
+    is_active: true,
+    is_triggered: false,
+    triggered_at: null,
+    created_at: new Date(Date.now() - 2 * 86400000).toISOString(),
+  },
+  {
+    id: 'alt-2',
+    user_id: DEMO_ADMIN_USER.id,
+    coin_id: 'ethereum',
+    coin_symbol: 'ETH',
+    coin_name: 'Ethereum',
+    target_price: 2400,
+    condition: 'BELOW',
+    is_active: true,
+    is_triggered: false,
+    triggered_at: null,
+    created_at: new Date(Date.now() - 1 * 86400000).toISOString(),
+  },
+  {
+    id: 'alt-3',
+    user_id: DEMO_ADMIN_USER.id,
+    coin_id: 'solana',
+    coin_symbol: 'SOL',
+    coin_name: 'Solana',
+    target_price: 180,
+    condition: 'ABOVE',
+    is_active: true,
+    is_triggered: false,
+    triggered_at: null,
+    created_at: new Date(Date.now() - 3 * 86400000).toISOString(),
+  },
+];
+
+export const INITIAL_ACTIVITY_LOGS: ActivityLog[] = [
+  {
+    id: 'log-001',
+    user_id: DEMO_ADMIN_USER.id,
+    user_email: DEMO_ADMIN_USER.email,
+    action: 'USER_LOGIN',
+    details: { method: 'email_password', ip: '127.0.0.1' },
+    created_at: new Date(Date.now() - 10 * 60000).toISOString(),
+  },
+  {
+    id: 'log-002',
+    user_id: DEMO_ADMIN_USER.id,
+    user_email: DEMO_ADMIN_USER.email,
+    action: 'TRANSACTION_CREATED',
+    details: { coin: 'SOL', type: 'SELL', amount: 10, price: 155 },
+    created_at: new Date(Date.now() - 5 * 86400000).toISOString(),
+  },
+  {
+    id: 'log-003',
+    user_id: DEMO_REGULAR_USER.id,
+    user_email: DEMO_REGULAR_USER.email,
+    action: 'USER_SIGNUP',
+    details: { provider: 'google' },
+    created_at: new Date(Date.now() - 15 * 86400000).toISOString(),
+  },
+];
